@@ -1,0 +1,16 @@
+Le principali componenti del software in esame sono due: un server di 
+registrazione (lobby) e i client con i quali interagiscono i giocatori.
+Il server di registrazione ha lo scopo di fornire un unico punto di accesso, 
+in maniera da consentire ai client di conoscere le informazioni rilevanti degli 
+altri peer. Una volta completato il suo compito, il server termina e tutte le 
+comunicazioni successive avvengono con paradigma p2p fra i singoli client.
+\\
+Rispetto all'interazione con l'utente, i client forniscono la possibilità di 
+specificare l'indirizzo IP su cui risiede il server della lobby, uno username 
+che identifichi univocamente il giocatore e la posizione delle proprie pecore 
+nel campo di gioco.
+\\
+Passiamo ora ad una trattazione più approfondita del protocollo di 
+comunicazione da noi progettato.
+
+\subsection{La comunicazione}

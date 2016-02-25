@@ -1,0 +1,35 @@
+Nell'ambito dei giochi multiplayer online è interessante osservare come sia 
+possibile sfruttare paradigmi di comunicazione di tipo P2P, che non prevedano 
+quindi un singolo server centrale che coordini la comunicazione fra client. 
+Tale approccio introduce certamente maggiori difficoltà implementative, ma 
+non esponendo un singolo point-of-failure, è maggiormente resistente ad 
+eventuali problemi di rete o sugli host.
+\\
+Il progetto qui descritto riguarda un'estensione multiplayer della battaglia 
+navale tradizionale, che sfrutti il paradigma di comunicazione p2p.
+\subsection{Il gioco}
+La battaglia navale tradizionale prevede due giocatori che dapprima piazzano 
+delle navi su una griglia bidimensionale di dimensioni prestabilite. Durante la 
+fase di gioco vera e propria i due partecipanti si alternano dichiarando 
+attacchi sulla griglia dell'avversario. Quest'ultimo risponde:
+  \begin{itemize}
+   \item \emph{acqua} se l'attacco è andato a vuoto;
+   \item \emph{colpito} se l'attacco ha colpito una nave dell'avversario, senza 
+però affondarla;
+   \item \emph{colpito e affondato} se l'attacco ha colpito una nave 
+dell'avversario, affondandola.
+  \end{itemize}
+Nella versione da noi implementata vi sono alcune modifiche rispetto alla 
+versione tradizionale. Le navi sono state rimpiazzate da pecore, sfruttando il 
+gioco di parole fra ship e sheep: battleship (battaglia navale) è diventato 
+battlesheep (battaglia fra pecore).
+Al fine di semplificare le regole del gioco, ciascuna pecora viene piazzata 
+individualmente sulla griglia occupando dunque una sola cella, a differenza 
+delle navi che avrebbero occupato più spazio.
+\\
+L'estensione più importante riguarda l'aspetto multigiocatore: ciascun 
+partecipante dichiara, durante il suo turno, l'avversario da colpire e la 
+cella obiettivo del suo attacco. Il risultato viene poi comunicato a tutti i 
+giocatori. Il vincitore del gioco è l'ultimo partecipante ad avere pecore vive 
+sul proprio campo di battaglia. La classifica finale è data dall'ordine nel 
+quale i giocatori perdono tutte le proprie pecore.
