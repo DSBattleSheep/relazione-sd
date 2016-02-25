@@ -1,0 +1,20 @@
+intro:
+    -intro
+    -il giuoco(regole, pecore, etc)
+    -p2p, fiigo
+
+aspetti progettuali:
+    -la comunicazione (lobby, turno, gioco,come abbiamo risolto le return parziali)
+    -la vista del gioco (registrazione, ins. pecore, gioco)
+
+aspetti implementativi:
+    -ghiavaava(UML)
+    -design pattern(mvc, factory, observer, singleton)
+    -gui
+    -rmi
+
+valutazione:
+    -funzionaaaa!
+
+conclusioni:
+    -funzionaaaaa#2
