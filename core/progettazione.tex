@@ -4,6 +4,10 @@ Il server di registrazione ha lo scopo di fornire un unico punto di accesso,
 in maniera da consentire ai client di conoscere le informazioni rilevanti degli 
 altri peer. Una volta completato il suo compito, il server termina e tutte le 
 comunicazioni successive avvengono con paradigma p2p fra i singoli client.
+La conoscenza dei singoli peer è fortemente limitata: essi conoscono infatti 
+solo la posizione delle pecore sul proprio campo di gioco, non quelle altrui. 
+Vengono invece comunicate a tutti le mosse effettuate da ciascun giocatore e 
+quale effetto esse abbiano avuto sul campo degli avversari.
 \\
 Rispetto all'interazione con l'utente, i client forniscono la possibilità di 
 specificare l'indirizzo IP su cui risiede il server della lobby, uno username 
@@ -14,3 +18,54 @@ Passiamo ora ad una trattazione più approfondita del protocollo di
 comunicazione da noi progettato.
 
 \subsection{La comunicazione}
+La comunicazione fra i client e fra client e server avviene in tre fasi:
+\begin{itemize}
+ \item Registrazione;
+ \item Scelta del turno;
+\item Gioco.
+\end{itemize}
+
+Durante la fase di registrazione i client si connettono al 
+server fornendo il proprio username e la porta su cui sono in ascolto. Il 
+server risponde con nomi utenti, porte e IP degli altri client in modo da 
+consentire l'avvio della comunicazione di tipo p2p. In questa fase non vengono 
+gestiti eventuali crash dei client, in quanto tale gestione avverrà nelle fasi 
+successive, nelle quali viene implementata la comunicazione distribuita vera e 
+propria.
+\\
+Durante la scelta del turno ciascun client scorre la lista dei propri 
+avversari e contatta ognuno di essi per ottenere un numero generato in modo 
+pseudocausale. In questo modo i client sono in possesso di valori associati a 
+ciascun avversario, che vengono utilizzati per determinare l'ordine di gioco in 
+modo fair. Nel caso in cui due o più valori siano uguali, l'ordine fra di essi 
+viene determinato a partire dall'ordinamento alfabetico degli username. In 
+seguito alla scelta del turno ciascun client è in possesso di una sequenza 
+ordinata di giocatori, che viene usata in seguito per scegliere chi debba 
+giocare.
+\\
+Può quindi iniziare la fase di gioco vero e proprio. Tutti i client si 
+collegano quindi al giocatore che possiede il turno (turn owner). %FIXME
+Quest'ultimo seleziona dunque la propria mossa, la comunica al peer bersaglio, 
+allo scopo di conoscere lo stato della cella selezionata, infine comunica la 
+mossa ed il risultato a tutti gli avversari. Per gestire eventuali crash 
+da parte di utenti diversi dal turn owner, viene restituita ai client anche una 
+lista di player crashati, che viene utilizzata in seguito per modificare in 
+modo appropriato le strutture dati relative ai giocatori. Oltre al caso di crash 
+veri e propri, viene anche gestito il caso in cui la comunicazione di rete a 
+partire da qualche giocatore sia troppo latente, per cui viene impostato un 
+timer oltre il quale non vengono accettate ulteriori connessioni.
+Nel caso in cui sia invece il turn owner a subire un crash, gli altri giocatori 
+vengono allertati immediatamente e il gioco può procedere con il client 
+successivo.
+Un'ultima possibilità di errore emerge nel caso in cui il turn owner crashi 
+mentre sta restituendo la mossa effettuata ai client. In tal caso, ci 
+si potrebbe trovare in una situazione di inconsistenza dello stato globale del 
+sistema. Alcuni client conoscerebbero la mossa che il precedente turn owner ha 
+effettuato, altri no. È pertanto necessario gestire tali situazioni per 
+ripristinare la coerenza globale: al turno successivo sarà il nuovo turn owner 
+a confrontare gli orologi logici contenuti in ciascuna mossa al fine di 
+stabilire quale sia la più recente. Dopo aver aggiornato il proprio stato se 
+necessario, il turn owner comunica agli avversari non aggiornati la mossa più 
+recente, prima di iniziare il turno vero e proprio. In questo modo è garantita 
+la coerenza dello stato condiviso prima che possa avvenire qualsiasi tipo di 
+mossa.
