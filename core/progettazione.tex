@@ -24,7 +24,11 @@ La comunicazione fra i client e fra client e server avviene in tre fasi:
  \item Scelta del turno;
 \item Gioco.
 \end{itemize}
-
+Ciascun client ha la necessità di localizzare l'indirizzo della lobby a cui 
+registrarsi. Per effettuare tale ricerca si è optato per un approccio forse non 
+molto elegante ma di certa efficacia: i client scansionano la sottorete (con 
+maschera 255.255.255.0) alla ricerca di lobby server attivi, che rispondono con 
+il proprio nome identificativo.
 Durante la fase di registrazione i client si connettono al 
 server fornendo il proprio username e la porta su cui sono in ascolto. Il 
 server risponde con nomi utenti, porte e IP degli altri client in modo da 
