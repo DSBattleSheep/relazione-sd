@@ -17,6 +17,8 @@ nel campo di gioco.
 Passiamo ora ad una trattazione più approfondita del protocollo di 
 comunicazione da noi progettato.
 
+
+
 \subsection{La comunicazione}
 La comunicazione fra i client e fra client e server avviene in tre fasi:
 \begin{itemize}
@@ -73,3 +75,73 @@ necessario, il turn owner comunica agli avversari non aggiornati la mossa più
 recente, prima di iniziare il turno vero e proprio. In questo modo è garantita 
 la coerenza dello stato condiviso prima che possa avvenire qualsiasi tipo di 
 mossa.
+
+
+
+\subsection{GUI}
+La grafica del gioco si compone di 4 \textit{frame} principali:
+\begin{itemize}
+	\item il \textit{main frame}: è il frame principale che parte all'avvio del
+	gioco e chiede in che modalità avviare il programma, se come server (lobby)
+	o come client (game);
+	\item il \textit{lobby frame}: è il frame che viene avviato se si decide di
+	eseguire il gioco come server e fornisce ai client un punto di accesso unico
+	al programma;
+	\item il \textit{registration frame}: è il frame che viene avviato se si
+	decide di eseguire il gioco come client e permette all'utente di effettuare
+	la registrazione;
+	\item il \textit{game frame}: è il frame che viene avviato una volta
+	completata la registrazione e permette all'utente di giocare.
+\end{itemize}
+
+\subsubsection{Main Frame}
+Questo frame si compone semplicemente di due radio button che permettono di
+scegliere la modalità nella quale avviare il gioco. La modalità di default è
+quella che permette di far partire il programma come client. Una volta
+effettuata la scelta sarà sufficiente confermare l'azione premendo sul bottone
+``Ok''.
+
+\subsubsection{Lobby Frame}
+Il frame della lobby permette di raccogliere le iscrizioni al gioco da parte dei
+vari client e si compone di 3 pannelli.\newline
+Il primo pannello permette di scegliere il nome della stanza. Uuna volta
+confermato il nome sarà mostrato il secondo pannello il quale mostra in alto
+l'indirizzo ip e la porta sulla quale si è in ascolto e, al centro, un messaggio
+che informa l'utente dell'attesa della connessione di eventuali client. Non
+appena il primo client si è connesso, viene mostrato il terzo ed ultimo pannello
+che ospita, al centro, una tabella che elenca tutti gli host (client) che via
+via si connettono alla lobby. A discrezione dell'utente, tramite la pressione
+del bottone ``Start'', saràpossibile chiudere le registrazioni ed avviare il
+gioco.
+
+\subsubsection{Registration Frame}
+Il frame per la registrazione si compone di una serie di pannelli che possono
+essere raggruppati in base alle funzionalità che offrono.\newline
+Nel primo pannello sono elencati i nomi delle stanze ed i relativi indirizzi ip
+degli host che eseguono il server (lobby). Questo pannello permette all'utente
+di scegliere a quale partita iscriversi. È inoltre fornita, tramite la pressione
+di un bottone, la possibilità di specificare manualmente un indirizzo ip. Una
+volta confermata la propria scelta, saranno mostrati una serie di pannelli che
+emulano il loading del gioco, un warning panel che mostra un messaggio di alert
+che avvisa l'utente del fatto che il gioco sta venendo craccato ed un ultimo
+pannello che mostra una pecora nell'immagine di background, dove la scritta
+``Battleship'' è stata rimpiazzata con la scritta ``Battlesheep''. Dopo la
+sequenza di pannelli che introducono l'utente al gioco, gli viene richiesto
+l'username. La terza ed ultima informazione richiesta è la posizione delle
+pecore. A questo fine è mostrato un pannello con, al centro, la rappresentazione
+del campo di gioco. In alto è presente un numero che indica quante pecore
+bisogna ancora inserire. Una volta confermate tutte le informazioni necessarie,
+tramite la pressione del bottone ``Registration'' sarà mostrato un ultimo
+pannello che informa l'utente dell'avvenuta registrazione ed attesa dell'avvio
+del gioco.\newline
+Come è possibile intuire, il frame per la registrazione serve a raccogliere
+tutte le informazioni necessarie al gioco e a comunicare il proprio indirizzo
+ip ed username del giocatore alla lobby (entry point).
+
+\subsubsection{Game Frame}
+Questo frame permette agli utenti di giocare gli uni contro gli altri. Nella
+parte alta è presente un'immagine con il titolo del gioco, quella centrale è
+occupata a sinistra dal campo di gioco dell'utente e a destra da quello
+dell'avversario selezionato, a destra è presente una lista che elenca i nomi di
+tutti i giocatori mentre, nella sezione bassa del frame, è presente un'area di
+testo che funziona come una sorta di log.
