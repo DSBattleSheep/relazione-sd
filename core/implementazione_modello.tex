@@ -1,2 +1,31 @@
 \subsection{Modello}
-Il modello\dots
+Data la natura relativamente semplificata delle regole del gioco, la struttura 
+del modello è lineare e ridotta. Per quanto riguarda l'implementazione del 
+gioco vera e propria le principali classi coinvolte sono infatti le seguenti:
+\begin{itemize}
+ \item AField
+ \item APlayer
+ \item Move
+\end{itemize}
+Le prime due classi sono astratte, in quanto vengono differenziati il campo di 
+gioco proprio al client locale (chiamato MyField) e la propria istanza di 
+player(Me). Per quanto riguarda AField, esso rappresenta il campo di gioco e 
+contiene pertanto una matrice di interi che memorizza le informazioni 
+relative allo stato delle singole celle del campo di battaglia.
+La classe astratta APlayer ha due implementazioni: Opponent e Me. Gli 
+oggetti di tipo Opponent contengono le informazioni relative agli avversari: ip 
+e porta, username e stato dei propri campi di battaglia. La classe Me 
+identifica il giocatore locale, memorizza pertanto solo il nome utente e il 
+campo del giocatore locale. Le due classi implementano poi alcuni metodi utili 
+a conoscere lo stato del giocatore, per sapere ad esempio se egli abbia perso.
+L'ultima classe relativa al modello di gioco è Move, che contiene le 
+informazioni relative alla mossa effettuata, compreso il risultato di 
+quest'ultima. Tale classe è serializzabile, in quanto viene scambiata fra i 
+client per comunicare informazioni relative alla mossa scelta e all'ultima 
+mossa osservata. Al fine di consentire il recupero di eventuali mosse che non 
+siano state trasmesse a tutti i client, ciascuna mossa contiene un intero che 
+viene incrementato per ciascuna nuova mossa effettuata.
+\\
+Oltre alle classi descritte in precedenza, vi è anche una classe NetPlayer, che 
+viene utilizzata durante la fase di registrazione per ottenere informazioni 
+riguardanti gli altri client dal Lobby Server.

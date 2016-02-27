@@ -1,3 +1,9 @@
+Per l'implementazione del progetto si è scelto di utilizzare il linguaggio 
+di programmazione basato sugli oggetti Java, che tramite il framework RMI 
+fornisce API specificamente progettate per consentire la realizzazione di 
+applicazioni distribuite in modo efficace. Per quanto riguarda l'interfaccia 
+grafica, si è utilizzata la libreria di Java Swing.
+\\
 Il software è stato implementato secondo il pattern architetturale \textbf{MVC},
 anche noto come \textbf{Model-View-Controller}, il quale permette di creare una
 architettura cosiddetta \textit{multi-tier}, ovvero nella quale le tre
@@ -6,7 +12,8 @@ svolgono:
 \begin{itemize}
 	\item il \textit{modello}: che fornisce i metodi per accedere ai dati utili
 	dell'applicazione;
-	\item la \textit{vista}: la quale visualizza i dati del modello e si occpua
+	\item la \textit{vista}: la quale visualizza i dati del modello e si 
+occupa
 	dell'interazione con l'utente;
 	\item il \textit{controller}: che riceve i comandi dall'utente e li attua
 	modificando lo stato degli altri due componenti.
@@ -27,6 +34,3 @@ partono dall'utente ed hanno come obiettivo quello di modificare lo
 che permettono di interagire direttamente con i dati mantenuti negli oggetti
 del mio modello (locale), ma anche tutte le classi che permettono la
 comunicazione fra gli host impegnati nella partita.\newline
-Il software è stato realizzato in \textbf{Java}, un linguaggio orientato agli
-oggetti, paradigma nel quale il modello MVC trova per sua stessa definizione un
-impiego del tutto naturale.
