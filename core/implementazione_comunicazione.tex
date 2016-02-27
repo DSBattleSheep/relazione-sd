@@ -1,2 +1,16 @@
 \subsection{Comunicazione}
-La comunicazione\dots
+Dal punto di vista implementativo la comunicazione può essere suddivisa a 
+partire dalle funzionalità fondamentali che la costituiscono:
+\begin{itemize}
+ \item Discovery;
+ \item Resistrazione;
+ \item Gioco.
+\end{itemize}
+La discovery è quella funzione che consente ai client di trovare eventuali 
+lobby attive nella propria sottorete di classe C. La registrazione al Lobby 
+Server consente ai client di registrarsi alla partita e di ottenere le 
+informazioni fondamentali per l'indirizzamento degli avversari. Le funzionalità 
+relative al gioco sono indubbiamente quelle più corpose: vi sono servizi 
+finalizzati a stabilire l'ordine di gioco, connettersi al turn owner e 
+conoscere lo stato di una cella del campo di gioco avversario durante il 
+proprio turno.

@@ -10,6 +10,12 @@ aspetti progettuali:
 aspetti implementativi:
     -ghiavaava(UML)
     -design pattern(mvc, factory, observer, singleton)
+    -Modello:
+        *field
+        *player(opponents e me)
+        *netplayer
+        *move
+
     -gui
     -rmi
 
