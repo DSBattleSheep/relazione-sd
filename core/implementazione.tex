@@ -1,1 +1,29 @@
-Il software è stato implementato secondo 
+Il software è stato implementato secondo il pattern architetturale \textbf{MVC},
+anche noto come \textbf{Model-View-Controller}, il quale permette di creare una
+architettura cosiddetta \textit{multi-tier}, ovvero nella quale le tre
+componenti fondamentali di un programma sono suddivise in base ai compiti che
+svolgono:
+\begin{itemize}
+	\item il \textit{modello}: che fornisce i metodi per accedere ai dati utili
+	dell'applicazione;
+	\item la \textit{vista}: la quale visualizza i dati del modello e si occpua
+	dell'interazione con l'utente;
+	\item il \textit{controller}: che riceve i comandi dall'utente e li attua
+	modificando lo stato degli altri due componenti.
+\end{itemize}
+Nel nostro specifico caso, il modello si compone di tutte quelle classi atte a
+mantenere i dati dell'applicazione. Abbiamo dunque l'oggetto che rappresenta il
+campo di gioco dell'utente e degli avversari, l'oggetto che rappresenta i
+giocatori impegnati nella partita, quello che astrae i dati degli host che si
+registrano alla lobby con l'intenzione di partecipare al gioco,
+eccetera\dots\newline
+La vista è invece formata da tutta una serie di classi atte a permettere la
+corretta visualizzazione dei dati, a partire dal frame per la registrazione fino
+ad arrivare al frame di gioco.\newline
+Vista la natura distribuita del programma, in questo specifico caso il
+controller può essere pensato come a tutti quei meccanismi di interazione che
+partono dall'utente ed hanno come obiettivo quello di modificare lo
+\textit{stato globale} del gioco. Dunque, non soltanto le componenti software
+che permettono di interagire direttamente con i dati mantenuti negli oggetti
+del mio modello (locale), ma anche tutte le classi che permettono la
+comunicazione fra gli host impegnati nella partita.
