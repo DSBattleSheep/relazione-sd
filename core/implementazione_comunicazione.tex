@@ -14,7 +14,13 @@ relative al gioco sono indubbiamente quelle più corpose: vi sono servizi
 finalizzati a stabilire l'ordine di gioco, connettersi al turn owner e 
 conoscere lo stato di una cella del campo di gioco avversario durante il 
 proprio turno.
-Tramite il diagramma delle interazioni in %\ref{} 
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{core/imgs/UML/sequence/discovery.png}
+    \caption{Diagramma delle interazioni, fase di discovery e registrazione}
+    \label{fig:discoveryseq}
+\end{figure}
+Tramite il diagramma delle interazioni in figura \ref{fig:discoveryseq} 
 è facile intuire come le fasi di discovery e registrazione siano legate 
 indissolubilmente: durante la discovery il client trova una o più lobby, a cui 
 poi richiede di unirsi. Come si evince dalla figura la discovery è una singola 
@@ -23,8 +29,12 @@ proprio IP). Durante la fase di join i vari client richiedono di unirsi alla
 lobby, successivamente è l'amministratore della lobby a dare il via alla 
 partita da interfaccia grafica. Ai client viene quindi restituita la lista di 
 giocatori (serializzati dall'oggetto NetPlayer) completa di indirizzi IP e 
-porte.
+porte. Si vedano in particolare i diagrammi delle classi in figure \ref{fig:classlobby}
+e \ref{fig:classlobbyclientside} che descrivono l'implementazione della comunicazione con la lobby,
+rispettivamente lato server e lato client.
 \\
+Per quanto riguarda l'implementazione della comunicazione fra client, essa è descritta dal
+diagramma delle classi in figura \ref{fig:classgame}.
 Prima di procedere con il gioco vero e proprio, tramite un'interfaccia 
 TurnOrderinterface ciascun client si connette ai propri avversari e richiede ad 
 essi un numero pseudocasuale, che viene usato per stabilire l'ordine di gioco 
@@ -33,14 +43,23 @@ dell'avversario, l'ordine alfabetico di tali stringhe concatenate viene usato
 poi per ordinare la lista di giocatori. In questo modo si ha un tie-breaker nel 
 caso in cui i numeri pseudo casuali siano uguali.
 \\
-Può dunque iniziare la fase di gioco vera e propria: è la TurnOwnerInterface 
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{core/imgs/UML/sequence/game.png}
+    \caption{Diagramma delle interazioni, fase di gioco con crash e ritorno 
+della mossa parziale}
+    \label{fig:gameseq}
+\end{figure}
+Può dunque iniziare la fase di gioco vera e propria (fig \ref{fig:gameseq}): è 
+la TurnOwnerInterface 
 che fornisce ai client la possibilità di connettersi al giocatore il cui turno 
 è appena iniziato per conoscerne la mossa. Esso effettua una prima 
 sincronizzazione a barriera, per controllare il numero degli utenti connessi e 
 conoscere l'ultima mossa che essi hanno ricevuto. Dopo tale sincronizzazione, 
 il turn owner effettua una chiamata a metodo remoto implementata da una 
 PushMoveInterface in modo da aggiornare, se necessario, i client che non hanno 
-ricevuto l'ultima mossa. Vi è dunque una seconda sincronizzazione a barriera, 
+ricevuto l'ultima mossa (come avviene fra client A e B nella figura 
+\ref{fig:gameseq}). Vi è dunque una seconda sincronizzazione a barriera, 
 in attesa che tutti conoscano l'ultima mossa. L'utente sceglie dunque la 
 mossa e l'avversario da attaccare, mentre a livello di comunicazione il turn 
 owner contatta l'avversario selezionato (target) e richiede lo stato della 

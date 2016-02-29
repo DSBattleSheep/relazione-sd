@@ -1,7 +1,8 @@
 \documentclass[a4paper,10pt]{scrartcl}
 \usepackage[utf8]{inputenc}
 \usepackage[italian]{babel}
-
+\usepackage{hyperref}
+\usepackage{graphicx}
 
 
 \begin{document}
@@ -31,5 +32,40 @@
 
 \section{Valutazione e Conclusioni}
 \input{core/valutazione.tex}
+
+\newpage
+
+\section{Appendice}
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.4]{core/imgs/UML/VistaBellaUML.png}
+	\caption{Diagramma delle Classi - Vista}
+	\label{figure:class_diagram_view}
+\end{figure}
+
+
+\begin{figure}[!ht]
+    \centering
+\includegraphics[width=1.0\textwidth]{core/imgs/UML/LobbyCommunicationUML.png}
+    \caption{Diagramma delle classi, lobby server}
+    \label{fig:classlobby}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+\includegraphics[width=1.0\textwidth]{core/imgs/UML/RegistrationBattlesheepCommunicationUML.png}
+    \caption{Diagramma delle classi, discovery e registration lato client}
+    \label{fig:classlobbyclientside}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+\includegraphics[width=1.0\textwidth]{core/imgs/UML/GameBattlesheepCommunicationUML.png}
+    \caption{Diagramma delle classi, comunicazione fra client}
+    \label{fig:classgame}
+\end{figure}
+
+
 
 \end{document}
