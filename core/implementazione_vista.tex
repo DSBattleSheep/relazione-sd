@@ -62,10 +62,31 @@ nella quale avviare il programma.
 
 
 \subsubsection{Lobby Frame}
-\begin{figure}
+\begin{figure}[!h]
 	\centering
-	\includegraphics[scale=0.5]{core/imgs/gui/main_frame}
+	\includegraphics[scale=0.5]{core/imgs/gui/lobby_frame}
 	\caption{Lobby Frame}
 	\label{figure:lobby_frame}
 \end{figure}
-
+Il \textit{LobbyFrame} si compone di 3 pannelli così come pianificato in fase di
+progettazione (Sezione~\ref{subsubsection:progettazione_lobby_frame}):
+\begin{itemize}
+	\item \textit{LobbyNamePanel}: è il primo pannello mostrato e peremtte agli
+	utenti di scegliere il nome della stanza. Ha due bottoni, uno per l'uscita
+	ed uno per l'avanzamento al pannello successivo. L'azione sul primo bottone
+	viene propagata dal frame (tramite il \textit{LobbyFrameObserver}) alla
+	classe Lobby che lo implementa mentre l'azione sul bottone ``next'' è usata
+	internamente per sapere quando mostrare il secondo pannello;
+	\item \textit{WaitingPanel}: è il secondo pannello che mostra una gif per
+	l'attesa di connessioni da parte dei client. Ha anch'esso un bottone di
+	uscita la cui pressione scatena un evento di notifica verso il frame (che
+	ne implementa i metodi definiti nell'osservatore del pannello). Il frame
+	si occupa poi, a sua volta, di notificare la classe Lobby;
+	\item \textit{ClientsTablePanel}: è il terzo ed ultimo pannello visibile in
+	Figura~\ref{figure:lobby_frame}. Ospita due bottoni: uno per l'uscita dal
+	programma ed uno per l'avvio della stanza. L'evento di click sul bottone
+	per l'uscita viene, come di consueto, passato dal frame alla Lobby. Il click
+	sul bottone ``start'' provoca, allo stesso modo, una chiamata alla funzione
+	implementata dall'osservatore del pannello (il frame) che notifica a sua
+	volta, tramite il solito LobbyFrameObserver, le classi sottostanti.
+\end{itemize}
