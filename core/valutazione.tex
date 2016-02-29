@@ -1,0 +1,26 @@
+I test da noi effettuati hanno evidenziato la capacità del software di gestire 
+guasti di tipo crash su uno qualsiasi dei client durante la comunicazione. Se 
+la gestione di return parziali ha causato un leggero aumento della complessità 
+del codice, tali errori non causano più inconsistenze durature, permettendo ai 
+client di accordarsi autonomamente rispetto all'ordine delle mosse effettuate.
+\\
+L'implementazione della discovery delle lobby da parte dei client consente 
+inoltre di fornire all'utente una semplice scelta delle stanze di gioco, senza 
+assumere che essi conoscano a priori l'indirizzo IP. Naturalmente 
+tale funzionalità è utile solo nel caso in cui i client si connettano ad un IP 
+della propria sottorete, in quanto è impensabile fare discovery fra reti 
+eterogenee senza prevedere un qualche server di appoggio esterno.
+\\
+Nonostante la semplicità del gioco scelto per il progetto, il protocollo di 
+comunicazione implementato può essere facilmente generalizzabile a qualsiasi 
+gioco a turni che proceda con una mossa per giocatore in un ordine prestabilito.
+Sarebbe infatti sufficiente modificare le strutture dati relative alle mosse 
+effettuate e cambiare leggermente le altre parti del codice per implementare un 
+qualsiasi nuovo gioco a turni.
+\\
+Per aumentare la godibilità del gioco si potrebbe infine imporre al giocatore 
+di inserire le pecore sul campo di gioco in celle contigue, in modo analogo a 
+quanto avviene nella battaglia navale tradizionale. In questo modo ciascun 
+attacco che ha avuto successo causerà una ricerca delle pecore del blocco 
+rimanenti nelle celle adiacenti, migliorando la godibilità complessiva del 
+gioco.
