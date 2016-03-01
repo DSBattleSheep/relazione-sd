@@ -62,19 +62,14 @@ notifca il \textit{Main}.
 	\caption{}
 \end{figure}
 Il \textit{LobbyFrame} si compone di 3 pannelli così come pianificato in fase di
-progettazione (Sezione~\ref{subsubsection:progettazione_lobby_frame}):
-\begin{itemize}
-	\item \textit{LobbyNamePanel}: è il primo pannello mostrato e peremtte agli
-	utenti di scegliere il nome della stanza. Ha due bottoni, uno per l'uscita
-	dal programma ed uno per l'avanzamento al pannello successivo;
-	\item \textit{WaitingPanel}: è il secondo pannello che mostra una gif per
-	l'attesa di connessioni da parte dei client. Ha anch'esso un bottone di
-	uscita;
-	\item \textit{ClientsTablePanel}: è il terzo ed ultimo pannello visibile in
-	Figura~\ref{figure:lobby_frame}. Viene mostrato automaticamente non appena
-	un host si connette. Ospita due bottoni: uno per l'uscita dal programma ed
-	uno per l'avvio della stanza.
-\end{itemize}
+progettazione (Sezione~\ref{subsubsection:progettazione_lobby_frame}). Il primo
+pannello peremtte agli utenti di scegliere il nome della stanza. Ha due bottoni,
+uno per l'uscita dal programma ed uno per l'avanzamento al pannello successivo.
+Il secondo mostra una gif per l'attesa di connessioni da parte dei client ed ha
+anch'esso un bottone di uscita. Il terzo ed ultimo pannello, visibile in Figura
+\ref{figure:lobby_frame}, viene mostrato automaticamente non appena un host si
+connette. Ospita due bottoni: uno per l'uscita dal programma ed uno per l'avvio
+della stanza.\newline
 Quando uno dei bottoni di uscita viene premuto, il frame viene notificato dalle
 funzioni usate dai pannelli per le notifiche e a sua volta propaga
 l'informazione verso il prorio osservatore (\textit{Lobby}) tramite i metodi
