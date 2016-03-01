@@ -7,8 +7,8 @@ viene fornito un pannello che consente l’avvio della partita a sua discrezione
 inoltre visualizzati username ed IP di tutti i client.
 Nel caso del gioco vero e proprio, viene dapprima richiesto all’utente a quale stanza
 desideri unirsi (la scelta viene semplificata mostrando una lista di server correntemente attivi).
-Proseguendo è stata inserita una animazione che, ironicamente, fa intuire il motivo del nome del gioco.
-Successivamente egli immette lo username con cui vorrà registrarsi e la posizione delle pecore sul
+È stata inserita una animazione che, ironicamente, fa intuire il motivo del nome del gioco.
+Successivamente egli immette username e la posizione delle pecore sul
 proprio campo di battaglia. Il client mostra dunque una schermata di attesa, prima
 che la lobby gli comunichi i partecipanti e la partita possa iniziare.
 Vi è infine la schermata di gioco, che consente all’utente di specificare la posizione e

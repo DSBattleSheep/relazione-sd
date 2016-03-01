@@ -1,8 +1,21 @@
 \subsection{Vista}
 Le classi della vista sono state implementate utilizzando la libreria
 \textbf{Swing} fornita di default dal linguaggio.\newline
+
+\iftrue
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[scale=0.45,center]{core/imgs/UML/VistaBellaUML-noattr.png}
+	\caption{Diagramma delle Classi - Vista}
+	\label{figure:class_diagram_view}
+\end{figure}
 Come mostrato dal \textit{class diagram} in Figura
-\ref{figure:class_diagram_view} i 4 frame del gioco estendono da un'unica
+\ref{figure:class_diagram_view} i
+\else
+I
+\fi
+ 4 frame del gioco estendono da un'unica
 classe appositamente creata per fornire una veste grafica di default:
 l'\textit{AFrame}. Questo è essenzialmente un JFrame con un layout grafico
 prestabilito che fornisce metodi utili per l'aggiunta e la sostituzione dei
@@ -34,8 +47,9 @@ sottostanti. Il dialogo con la vista avviene dunque in due modi:
 
 \subsubsection{Main Frame}
 Il frame principale si compone di un unico pannello, il \textit{MainPanel}. Così
-come detto in fase di progettazione (Sezione
-\ref{subsubsection:progettazione_main_frame}), questo frame ha il compito di
+come detto in fase di progettazione,
+%(Sezione \ref{subsubsection:progettazione_main_frame}) 
+questo frame ha il compito di
 permettere all'utente la scelta della modalità nella quale avviare il programma:
 se come server (lobby) o come client (game).\newline
 Per la comunicazione verso l'esterno, il MainPanel ha un'interfaccia associata
@@ -61,30 +75,28 @@ notifca il \textit{Main}.
 	\end{subfigure}
 	\caption{}
 \end{figure}
-Il \textit{LobbyFrame} si compone di 3 pannelli così come pianificato in fase di
-progettazione (Sezione~\ref{subsubsection:progettazione_lobby_frame}). Il primo
-pannello peremtte agli utenti di scegliere il nome della stanza. Ha due bottoni,
+Il \textit{LobbyFrame} si compone di 3 pannelli che vengono brevemente descritti di seguito. Il primo
+pannello permette agli utenti di scegliere il nome della stanza. Ha due bottoni,
 uno per l'uscita dal programma ed uno per l'avanzamento al pannello successivo.
 Il secondo mostra una gif per l'attesa di connessioni da parte dei client ed ha
 anch'esso un bottone di uscita. Il terzo ed ultimo pannello, visibile in Figura
-\ref{figure:lobby_frame}, viene mostrato automaticamente non appena un host si
+\ref{figure:lobby_frame}, viene mostrato automaticamente non appena un client si
 connette. Ospita due bottoni: uno per l'uscita dal programma ed uno per l'avvio
 della stanza.\newline
 Quando uno dei bottoni di uscita viene premuto, il frame viene notificato dalle
-funzioni usate dai pannelli per le notifiche e a sua volta propaga
+funzioni usate dai pannelli per le notifiche e, a sua volta, propaga
 l'informazione verso il prorio osservatore (\textit{Lobby}) tramite i metodi
-forniti dall'intrfaccia \textit{LobbyFrameObserver}. Lo stesso comportamento
-viene attuato alla pressione del bottone ``Start''. L'azione sul bottone
+forniti dall'interfaccia \textit{LobbyFrameObserver}. Lo stesso comportamento
+viene attuato alla pressione del pulsante ``Start''. L'azione sul bottone
 ``Next'', invece, non viene propagata all'esterno ma serve al frame per sapere
 quando visualizzare il secondo pannello.
 
 
 
 \subsubsection{Registration Frame}
-Il \textit{RegistrationFrame} si compone di 7 pannelli così come descritto in
-Sezione~\ref{subsubsection:progettazione_registration_frame}.\newline
+Il \textit{RegistrationFrame} si compone invece di 7 pannelli.\newline
 Il comportamento di questo frame è del tutto simile a quello del LobbyFrame: gli
-eventi scatenati dai bottoni per l'avanzamento della registrazione (``Next'' e
+eventi scatenati dai pulsanti per l'avanzamento della registrazione (``Next'' e
 ``Previous'') sono usati internamente per la sostituzione dei vari pannelli
 mentre, le azioni sui bottoni ``Exit'' e ``Registration'' sono propagate dal
 frame verso il proprio osservatore (\textit{Battlesheep}) tramite l'interfaccia
@@ -103,8 +115,7 @@ gioco e di registrarsi alla lobby.
 	\label{figure:game_frame}
 \end{figure}
 Il \textit{GameFrame}, mostrato in Figura~\ref{figure:game_frame}, è anch'esso
-stato implementato secondo le specifiche progettuali descritte in Sezione
-\ref{subsubsection:progettazione_game_frame}.\newline
+stato implementato secondo le specifiche progettuali descritte in precedenza.\newline
 La classe \textit{Battlesheep} comunica con questo frame tramite i metodi che
 esso mette a disposizione principalmente per informarlo di come è tarminata la
 partita per l'utente, per gli altri giocatori e su come si sono conclusi i vari
