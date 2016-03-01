@@ -1,5 +1,4 @@
 \subsection{Vista}
-
 Le classi della vista sono state implementate utilizzando la libreria
 \textbf{Swing} fornita di default dal linguaggio.\newline
 Come mostrato dal \textit{class diagram} in Figura
@@ -7,32 +6,29 @@ Come mostrato dal \textit{class diagram} in Figura
 classe appositamente creata per fornire una veste grafica di default:
 l'\textit{AFrame}. Questo è essenzialmente un JFrame con un layout grafico
 prestabilito che fornisce metodi utili per l'aggiunta e la sostituzione dei
-pannelli che sono di volta in volta visualizzati sui frame. È qui che viene
-settato il nome del programma come titolo della finestra, l'icona del gioco e la
-posizione di comparsa sul display (al centro).\newline
+pannelli che sono di volta in volta visualizzati. È qui che viene settato il
+nome del programma come titolo della finestra, l'icona del gioco e la posizione
+di comparsa sul display (al centro).\newline
 Così come per i frame, tutti i pannelli estendono da un'unica classe,
 l'\textit{APanel}. Anch'esso fornisce metodi per l'aggiunta dei vari oggetti che
 lo popoleranno (label, aree di testo, bottoni, ecc\dots). Ogni frame mantiene al
-proprio interno le istanze dei pannelli da mostrare: in sequenza, come nel caso
-della registrazione (prima il pannello che richiede la stanza alla quale
-registrarsi, poi il pannello che richiede all'utente l'username, quello che
-permette di inserire la posizione delle proprie pecore sul campo di gioco,
-ecc\dots), o nelle varie parti, come nel caso del gioco (il pannello con il nome
-del programma in alto, il pannello con i campi dei giocatori al centro, quello
-con la lista di tutti i player a destra, ecc\dots).\newline
+proprio interno le istanze dei pannelli da mostrare.\newline
 Un pattern molto importante e particolarmente sfruttato nell'implementazione
 grafica di questo progetto è \textit{Observer}, il quale si basa su uno o più
 oggetti (osservatori o observer) che vengono registrati e notificati
-all'occorrenza di uno o più determinati eventi. Ogni pannello ha associato un
-osservatore (un'interfaccia) che fornisce i metodi da implementare a qualunque
-oggetto voglia essere notificato all'occorrenza di un evento. Così come ci sono
-osservatori per i pannelli atti a notificare i frame quando accade qualcosa di
-significativo, ogni frame ha a sua volta un osservatore associato che serve a
-notificare le classi principali del gioco (Main, Lobby e Battlesheep)
-all'occorrenza di determinati eventi scatenati dagli utenti. È in questo modo
-che la grafica comunica con le classi sottostanti. Queste, a loro volta,
-comunicano con le classi grafiche utilizzando direttamente i metodi che esse
-espongono nella loro interfaccia.
+all'occorrenza di uno o più determinati eventi. Ogni pannello in grado di
+generare eventi ha associata un'interfaccia che fornisce i metodi che
+l'osservatore deve implementare per ricevere le notifiche. Dunque, ognuno dei 4
+frame si comporta da osservatore nei confronti dei pannelli usati, implementando
+le relative interfacce. Allo stesso modo i frame comunicano con le classi
+sottostanti. Il dialogo con la vista avviene dunque in due modi:
+\begin{itemize}
+	\item quando dall'esterno si vuole comunicare con i frame, se ne usano i
+	metodi che questi forniscono;
+	\item quando invece la comunicazione parte dalla grafica, i frame usano i
+	metodi forniti dalle rispettive interfacce che gli osservatori avranno il
+	compito di implementare.
+\end{itemize}
 
 
 
@@ -48,11 +44,10 @@ mostrato in Figura~\ref{figure:main_frame}. Così come detto in fase di
 progettazione (Sezione~\ref{subsubsection:progettazione_main_frame}), questo
 frame ha il compito di permettere all'utente la scelta della modalità nella
 quale avviare il programma: se come server (lobby) o come client (game).\newline
-Il MainPanel, dunque, ha un osservatore associato che notifica il MainFrame alla
-pressione dei bottoni ``exit'' e ``start'' il quale, a sua volta (tramite
-l'observer \textit{MainFrameObserver}), notifica la classe Main dei medesimi
-eventi passandole (nel caso in cui il bottone ``start'' sia premuto) la modalità
-nella quale avviare il programma.
+Per la comunicazione verso l'esterno, il MainPanel ha un'interfaccia associata
+che utilizza per notificare il MainFrame alla pressione dei bottoni ``Exit'' e
+``Start'' il quale, a sua volta, tramite l'observer \textit{MainFrameObserver}
+notifca il \textit{Main}.
 
 
 
@@ -68,20 +63,51 @@ progettazione (Sezione~\ref{subsubsection:progettazione_lobby_frame}):
 \begin{itemize}
 	\item \textit{LobbyNamePanel}: è il primo pannello mostrato e peremtte agli
 	utenti di scegliere il nome della stanza. Ha due bottoni, uno per l'uscita
-	ed uno per l'avanzamento al pannello successivo. L'azione sul primo bottone
-	viene propagata dal frame (tramite il \textit{LobbyFrameObserver}) alla
-	classe Lobby che lo implementa mentre l'azione sul bottone ``next'' è usata
-	internamente per sapere quando mostrare il secondo pannello;
+	dal programma ed uno per l'avanzamento al pannello successivo;
 	\item \textit{WaitingPanel}: è il secondo pannello che mostra una gif per
 	l'attesa di connessioni da parte dei client. Ha anch'esso un bottone di
-	uscita la cui pressione scatena un evento di notifica verso il frame (che
-	ne implementa i metodi definiti nell'osservatore del pannello). Il frame
-	si occupa poi, a sua volta, di notificare la classe Lobby;
+	uscita;
 	\item \textit{ClientsTablePanel}: è il terzo ed ultimo pannello visibile in
-	Figura~\ref{figure:lobby_frame}. Ospita due bottoni: uno per l'uscita dal
-	programma ed uno per l'avvio della stanza. L'evento di click sul bottone
-	per l'uscita viene, come di consueto, passato dal frame alla Lobby. Il click
-	sul bottone ``start'' provoca, allo stesso modo, una chiamata alla funzione
-	implementata dall'osservatore del pannello (il frame) che notifica a sua
-	volta, tramite il solito LobbyFrameObserver, le classi sottostanti.
+	Figura~\ref{figure:lobby_frame}. Viene mostrato automaticamente non appena
+	un host si connette. Ospita due bottoni: uno per l'uscita dal programma ed
+	uno per l'avvio della stanza.
 \end{itemize}
+Quando uno dei bottoni di uscita viene premuto, il frame viene notificato dalle
+funzioni usate dai pannelli per le notifiche e a sua volta propaga
+l'informazione verso il prorio osservatore (\textit{Lobby}) tramite i metodi
+forniti dall'intrfaccia \textit{LobbyFrameObserver}. Lo stesso comportamento
+viene attuato alla pressione del bottone ``Start''. L'azione sul bottone
+``Next'', invece, non viene propagata all'esterno ma serve al frame per sapere
+quando visualizzare il secondo pannello.
+
+
+
+\subsubsection{Registration Frame}
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.5]{core/imgs/gui/registration_frame}
+	\caption{Registration Frame}
+	\label{figure:registration_frame}
+\end{figure}
+Il \textit{RegistrationFrame} si compone di 7 pannelli così come descritto in
+Sezione~\ref{subsubsection:progettazione_registration_frame}.\newline
+Il comportamento di questo frame è del tutto simile a quello del LobbyFrame: gli
+eventi scatenati dai bottoni per l'avanzamento della registrazione (``Next'' e
+``Previous'') sono usati internamente per la sostituzione dei vari pannelli
+mentre, le azioni sui bottoni ``Exit'' e ``Registration'' sono propagate dal
+frame verso il proprio osservatore (\textit{Battlesheep}) tramite l'interfaccia
+\textit{RegistrationFrameObserver}.\newline
+In Figura~\ref{figure:registration_frame} è mostrato il sesto pannello che
+permette all'utente di scegliere la posizione delle proprie pecore nel campo di
+gioco e di registrarsi alla lobby.
+
+
+
+\subsubsection{Game Frame}
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.5]{core/imgs/gui/game_frame}
+	\caption{Game Frame}
+	\label{figuregame_frame}
+\end{figure}
+TODO\dots
