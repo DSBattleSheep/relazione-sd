@@ -110,4 +110,12 @@ gioco e di registrarsi alla lobby.
 	\caption{Game Frame}
 	\label{figuregame_frame}
 \end{figure}
-TODO\dots
+Il \textit{GameFrame}, mostrato in Figura~\ref{figure:game_frame}, è anch'esso
+stato implementato secondo le specifiche progettuali descritte in Sezione
+\ref{subsubsection:progettazione_game_frame}.\newline
+La classe \textit{Battlesheep} comunica con questo frame tramite i metodi che
+esso mette a disposizione principalmente per informarlo di come è tarminata la
+partita per l'utente, per gli altri giocatori e su come si sono conclusi i vari
+attacchi. Al contrario, il frame comunica con Battlesheep usando l'interfaccia
+\textit{GameFrameObserver} per comunicare la volontà da parte dell'utente di
+abbandonare il gioco o di attaccare un avversario in una daterminata posizione.
