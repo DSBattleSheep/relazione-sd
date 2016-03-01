@@ -33,17 +33,11 @@ sottostanti. Il dialogo con la vista avviene dunque in due modi:
 
 
 \subsubsection{Main Frame}
-\begin{figure}[!h]
-	\centering
-	\includegraphics[scale=0.5]{core/imgs/gui/main_frame}
-	\caption{Main Frame}
-	\label{figure:main_frame}
-\end{figure}
-Il frame principale si compone di un unico pannello, il \textit{MainPanel},
-mostrato in Figura~\ref{figure:main_frame}. Così come detto in fase di
-progettazione (Sezione~\ref{subsubsection:progettazione_main_frame}), questo
-frame ha il compito di permettere all'utente la scelta della modalità nella
-quale avviare il programma: se come server (lobby) o come client (game).\newline
+Il frame principale si compone di un unico pannello, il \textit{MainPanel}. Così
+come detto in fase di progettazione (Sezione
+\ref{subsubsection:progettazione_main_frame}), questo frame ha il compito di
+permettere all'utente la scelta della modalità nella quale avviare il programma:
+se come server (lobby) o come client (game).\newline
 Per la comunicazione verso l'esterno, il MainPanel ha un'interfaccia associata
 che utilizza per notificare il MainFrame alla pressione dei bottoni ``Exit'' e
 ``Start'' il quale, a sua volta, tramite l'observer \textit{MainFrameObserver}
@@ -85,7 +79,7 @@ quando visualizzare il secondo pannello.
 \subsubsection{Registration Frame}
 \begin{figure}[!h]
 	\centering
-	\includegraphics[scale=0.5]{core/imgs/gui/registration_frame}
+	\includegraphics[scale=0.4]{core/imgs/gui/registration_frame}
 	\caption{Registration Frame}
 	\label{figure:registration_frame}
 \end{figure}
@@ -106,9 +100,9 @@ gioco e di registrarsi alla lobby.
 \subsubsection{Game Frame}
 \begin{figure}[!h]
 	\centering
-	\includegraphics[scale=0.5]{core/imgs/gui/game_frame}
+	\includegraphics[scale=0.4]{core/imgs/gui/game_frame}
 	\caption{Game Frame}
-	\label{figuregame_frame}
+	\label{figure:game_frame}
 \end{figure}
 Il \textit{GameFrame}, mostrato in Figura~\ref{figure:game_frame}, è anch'esso
 stato implementato secondo le specifiche progettuali descritte in Sezione

@@ -5,36 +5,41 @@
 \usepackage{graphicx}
 
 
+
 \begin{document}
 
-%opening
+% title
 \title{BattleSheep}
 \subtitle{Progetto di Sistemi Distribuiti}
 \author{Giulio Biagini, Michele Corazza, Gianluca Iselli}
-
 \maketitle
 
+% abstract
 \begin{abstract}
 
 \end{abstract}
 
+% sections
 \section{Introduzione}
-\input{core/introduzione.tex}
+\input{core/introduzione}
 
 \section{Aspetti Progettuali}
-\input{core/progettazione.tex}
+\input{core/progettazione}
+\input{core/progettazione_vista}
+\input{core/progettazione_comunicazione}
 
 \section{Aspetti Implementativi}
 \input{core/implementazione}
-\input{core/implementazione_modello}
+%\input{core/implementazione_modello}
 \input{core/implementazione_vista}
 \input{core/implementazione_comunicazione}
 
 \section{Valutazione e Conclusioni}
-\input{core/valutazione.tex}
+\input{core/valutazione}
 
 \newpage
 
+% images
 \section{Appendice}
 
 \begin{figure}[!h]
@@ -43,7 +48,6 @@
 	\caption{Diagramma delle Classi - Vista}
 	\label{figure:class_diagram_view}
 \end{figure}
-
 
 \begin{figure}[!ht]
     \centering
@@ -65,7 +69,5 @@
     \caption{Diagramma delle classi, comunicazione fra client}
     \label{fig:classgame}
 \end{figure}
-
-
 
 \end{document}
