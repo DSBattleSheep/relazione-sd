@@ -1,13 +1,10 @@
 \subsection{Comunicazione}
-La comunicazione fra i client e fra client e server avviene in tre fasi:
-\begin{itemize}
- \item Registrazione;
- \item Scelta del turno;
-\item Gioco.
-\end{itemize}
+La comunicazione fra i client e fra client e server avviene nelle tre fasi seguenti:
+
+\subsubsection{Registrazione}
 Ciascun client ha la necessità di localizzare l'indirizzo della lobby a cui 
 registrarsi. Per effettuare tale ricerca si è optato per un approccio forse non 
-molto elegante ma di certa efficacia: i client scansionano la sottorete (con 
+molto elegante ma di sicura efficacia: i client scansionano la sottorete (con 
 maschera 255.255.255.0) alla ricerca di lobby server attivi, che rispondono con 
 il proprio nome identificativo.
 Durante la fase di registrazione i client si connettono al 
@@ -17,17 +14,17 @@ consentire l'avvio della comunicazione di tipo p2p. In questa fase non vengono
 gestiti eventuali crash dei client, in quanto tale gestione avverrà nelle fasi 
 successive, nelle quali viene implementata la comunicazione distribuita vera e 
 propria.
-\\
+\subsubsection{Scelta del turno}
 Durante la scelta del turno ciascun client scorre la lista dei propri 
 avversari e contatta ognuno di essi per ottenere un numero generato in modo 
 pseudocausale. In questo modo i client sono in possesso di valori associati a 
 ciascun avversario, che vengono utilizzati per determinare l'ordine di gioco in 
-modo fair. Nel caso in cui due o più valori siano uguali, l'ordine fra di essi 
-viene determinato a partire dall'ordinamento alfabetico degli username. In 
+modo fair. Nel caso in cui due o più valori siano uguali, la precedenza fra di essi 
+viene determinata a partire dall'ordinamento alfabetico degli username. In 
 seguito alla scelta del turno ciascun client è in possesso di una sequenza 
 ordinata di giocatori, che viene usata in seguito per scegliere chi debba 
-giocare.
-\\
+cominciare la partita.
+\subsubsection{Gioco}
 Può quindi iniziare la fase di gioco vero e proprio. Tutti i client si 
 collegano quindi al giocatore che possiede il turno (turn owner). %FIXME
 Quest'ultimo seleziona dunque la propria mossa, la comunica al peer bersaglio, 
@@ -48,9 +45,10 @@ si potrebbe trovare in una situazione di inconsistenza dello stato globale del
 sistema. Alcuni client conoscerebbero la mossa che il precedente turn owner ha 
 effettuato, altri no. È pertanto necessario gestire tali situazioni per 
 ripristinare la coerenza globale: al turno successivo sarà il nuovo turn owner 
-a confrontare gli orologi logici contenuti in ciascuna mossa al fine di 
-stabilire quale sia la più recente. Dopo aver aggiornato il proprio stato se 
-necessario, il turn owner comunica agli avversari non aggiornati la mossa più 
+a confrontare i valori interi contenuti in ciascuna mossa, al fine di 
+stabilire quale sia la più recente in ordine cronologico.
+Dopo aver modificato il proprio stato se necessario, il turn owner comunica agli 
+avversari non aggiornati la mossa più 
 recente, prima di iniziare il turno vero e proprio. In questo modo è garantita 
 la coerenza dello stato condiviso prima che possa avvenire qualsiasi tipo di 
 mossa.

@@ -2,20 +2,20 @@ Nell'ambito dei giochi multiplayer online è interessante osservare come sia
 possibile sfruttare paradigmi di comunicazione di tipo \textit{p2p} che non
 prevedono, quindi, un server centrale che coordini la comunicazione fra client.
 Tale approccio introduce certamente maggiori difficoltà implementative, ma
-non esponendo un singolo point-of-failure risulta essere più resistente ad
+non esponendo un singolo point-of-failure risulta essere più tollerante ad
 eventuali problemi di rete o sugli host.\newline
 Il progetto qui descritto riguarda un'estensione multiplayer del famoso gioco
 della \textit{Battaglia Navale} tradizionale, che sfrutti dunque il paradigma di
 comunicazione p2p.\newline
-La battaglia navale tradizionale prevede due giocatori che dapprima piazzano 
+La versione tradizionale del gioco prevede due giocatori che dapprima piazzano 
 delle navi su una griglia bidimensionale di dimensioni prestabilite. Durante la 
-fase di gioco vera e propria i due partecipanti si alternano dichiarando 
+partita vera e propria i due partecipanti si alternano dichiarando 
 attacchi sulla griglia dell'avversario.\newline
-Nella versione da noi implementata vi sono alcune modifiche rispetto alla 
-versione tradizionale. Le navi sono state rimpiazzate da pecore sfruttando il 
+Nella versione da noi implementata sono state apportate alcune modifiche.
+Le navi sono state rimpiazzate da pecore sfruttando il 
 gioco di parole fra battleship (battaglia navale) e battlesheep (battaglia fra
 pecore). Al fine di semplificare le regole del gioco, poi, ciascuna pecora viene
-piazzata singolarmente sulla griglia occupando, dunque, una sola cella a
+piazzata singolarmente sulla griglia occupando, dunque, una sola cella, a
 differenza delle navi che avrebbero occupato più spazio.\newline
 L'estensione più importante riguarda però l'aspetto multigiocatore: ciascun 
 partecipante dichiara, durante il suo turno, l'avversario da colpire e la 

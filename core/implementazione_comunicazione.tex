@@ -58,7 +58,7 @@ rispettivamente lato server e lato client.
 Per quanto riguarda l'implementazione della comunicazione fra client, essa è descritta dal
 diagramma delle classi in figura \ref{fig:classgame}.
 Prima di procedere con il gioco vero e proprio, tramite un'interfaccia 
-TurnOrderinterface ciascun client si connette ai propri avversari e richiede ad 
+TurnOrderInterface ciascun client si connette ai propri avversari e richiede ad 
 essi un numero pseudocasuale, che viene usato per stabilire l'ordine di gioco 
 nel modo seguente: il numero restituito viene concatenato al nome utente 
 dell'avversario, l'ordine alfabetico di tali stringhe concatenate viene usato 
@@ -101,9 +101,9 @@ se avviene dopo la prima sincronizzazione a barriera del turn owner. In questo
 caso è stato previsto che possa avvenire un attacco ad un client crashato, che 
 causa un errore e la rimozione di quest'ultimo dalla lista dei giocatori del 
 turn owner. Nel caso in cui il crash avvenga prima della sincronizzazione a 
-barriera, il turnOwner attende un timeout di 500 %FIXME 
-millisecondi e poi assume che i client che non si sono ancora connessi siano 
-crashati. Si noti che il turn owner fornisce agli altri client una lista di 
+barriera, il turn owner attende un timeout di 500 
+millisecondi e poi assume che i client che non si sono ancora connessi non siano più attivi.
+Si noti che il turn owner fornisce agli altri client una lista di 
 player crashati, in modo che essi sappiano chi è ancora attivo alla fine di 
 ciascun turno. Tramite tali accorgimenti il numero di player attivi è noto al 
 turn owner all'inizio del proprio turno e viene comunicato a tutti alla fine di 
