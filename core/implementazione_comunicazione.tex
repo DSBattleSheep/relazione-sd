@@ -13,33 +13,23 @@ partire dalle funzionalità fondamentali che la costituiscono: discovery, regist
 La discovery è quella funzione che consente ai client di trovare eventuali 
 lobby attive nella propria sottorete di classe C. La registrazione al Lobby 
 Server consente ai client di registrarsi alla partita e di ottenere le 
-informazioni fondamentali per l'indirizzamento degli avversari. 
-
+informazioni fondamentali per l'indirizzamento degli avversari.
 \begin{figure}[!ht]
     \centering
-    \includegraphics[scale=0.55,center]{core/imgs/UML/sequence/discovery.png}
+    \includegraphics[scale=0.60,center]{core/imgs/UML/sequence/discovery.png}
     \caption{Diagramma delle interazioni, fase di discovery e registrazione}
     \label{fig:discoveryseq}
 \end{figure}Le funzionalità 
 relative al gioco sono indubbiamente quelle più corpose: vi sono servizi 
 finalizzati a stabilire l'ordine di gioco, connettersi al turn owner e 
 conoscere lo stato di una cella del campo di gioco avversario durante il 
-proprio turno.
-
-Tramite il diagramma delle interazioni in figura \ref{fig:discoveryseq} 
+proprio turno. Tramite il diagramma delle interazioni in figura \ref{fig:discoveryseq} 
 è facile intuire come le fasi di discovery e registrazione siano legate 
 indissolubilmente: durante la discovery il client trova una o più lobby, a cui 
 poi richiede di unirsi. Come si evince dalla figura la discovery è una singola 
 RMI, nella quale la lobby restituisce il suo nome (ed, implicitamente, il 
 proprio IP). 
-
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[scale=0.70,center]{core/imgs/UML/RegistrationBattlesheepCommunicationUML-noattr.png}
-    \caption{Diagramma delle classi, discovery e registration lato client}
-    \label{fig:classregistration}
-\end{figure}
-
+\\
 Durante la fase di join i vari client richiedono di unirsi alla 
 lobby, successivamente è l'amministratore della lobby a dare il via alla 
 partita da interfaccia grafica. Ai client viene quindi restituita la lista di 
@@ -47,6 +37,13 @@ giocatori (serializzati dall'oggetto NetPlayer) completa di indirizzi IP e
 porte. Si vedano in particolare i diagrammi delle classi in figure \ref{fig:classlobby}
 e \ref{fig:classregistration} che descrivono l'implementazione della comunicazione con la lobby,
 rispettivamente lato server e lato client.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[scale=0.60,center]{core/imgs/UML/RegistrationBattlesheepCommunicationUML-noattr.png}
+    \caption{Diagramma delle classi, discovery e registrazione lato client}
+    \label{fig:classregistration}
+\end{figure}
 
 \begin{figure}[!ht]
     \centering
@@ -67,7 +64,7 @@ caso in cui i numeri pseudo casuali siano uguali.
 \\
 \begin{figure}[!ht]
     \centering
-    \includegraphics[scale=0.65,center]{core/imgs/UML/sequence/game.png}
+    \includegraphics[scale=0.55,center]{core/imgs/UML/sequence/game.png}
     \caption{Diagramma delle interazioni, fase di gioco con crash e ritorno 
 della mossa parziale}
     \label{fig:gameseq}
