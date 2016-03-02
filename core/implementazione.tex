@@ -3,8 +3,7 @@ di programmazione basato sugli oggetti Java, che tramite il framework RMI
 fornisce API specificamente progettate per consentire la realizzazione di 
 applicazioni distribuite in modo efficace.
 \\
-Il software è stato implementato secondo il pattern architetturale \textbf{MVC},
-anche noto come \textbf{Model-View-Controller}, il quale permette di creare una
+Il software è stato implementato secondo il pattern architetturale \textbf{Model-View-Controller}, il quale permette di creare una
 architettura cosiddetta \textit{multi-tier}, ovvero nella quale le tre
 componenti fondamentali di un programma sono suddivise in base ai compiti che
 svolgono:
@@ -23,13 +22,13 @@ campo di gioco dell'utente e degli avversari, l'oggetto che rappresenta i
 giocatori impegnati nella partita, quello che astrae i dati degli host che si
 registrano alla lobby con l'intenzione di partecipare al gioco,
 eccetera.\newline
-La vista è invece formata da tutta una serie di classi atte a permettere la
+La vista è invece formata da tutta una serie di classi che permettono la
 corretta visualizzazione dei dati, a partire dal frame per la registrazione fino
 ad arrivare al frame di gioco.\newline
 Vista la natura distribuita del programma, in questo specifico caso il
 controller è costituito da tutti quei meccanismi di interazione che
-partono dall'utente ed hanno come obiettivo quello di modificare lo
+sono in origine scatenati dall'utente ed hanno come effetto la modifica dello
 \textit{stato globale} del gioco. Dunque, non soltanto le componenti software
 che permettono di interagire direttamente con i dati mantenuti negli oggetti
-del mio modello (locale), ma anche tutte le classi che permettono la
+del modello locale, ma anche tutte le classi che permettono la
 comunicazione fra gli host impegnati nella partita.\newline

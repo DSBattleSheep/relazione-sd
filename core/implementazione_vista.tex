@@ -12,7 +12,7 @@ i 4 frame del gioco estendono un'unica
 classe astratta appositamente creata per fornire una veste grafica di default:
 l'\textit{AFrame}. Questo è essenzialmente un JFrame con un layout grafico
 prestabilito che fornisce metodi utili per l'aggiunta e la sostituzione dei
-pannelli che sono di volta in volta visualizzati. È qui che viene settato il
+pannelli che sono di volta in volta visualizzati. È qui che viene impostato il
 nome del programma come titolo della finestra, l'icona del gioco e la posizione sul display (al centro).\newline
 Così come per i frame, tutti i pannelli estendono da un'unica classe,
 l'\textit{APanel}. APanel fornisce anch'esso metodi per l'aggiunta dei vari oggetti che
@@ -20,15 +20,14 @@ lo popoleranno (label, aree di testo, bottoni, etc). Ogni frame mantiene al
 proprio interno le istanze dei pannelli da mostrare.\newline
 Un pattern molto importante e particolarmente sfruttato nell'implementazione
 grafica di questo progetto è \textit{Observer}, il quale si basa su uno o più
-oggetti (osservatori o observer) che vengono registrati e notificati
-al verificarsi di determinate condizioni. Ogni pannello in grado di
-generare eventi ha associata un'interfaccia che fornisce i metodi che
-l'osservatore deve implementare per ricevere le notifiche. Dunque, ognuno dei 4
-frame si comporta da osservatore nei confronti dei pannelli usati, implementando
+oggetti (osservatori o observer) che vengono notificati
+al verificarsi di determinate condizioni. Ad ogni pannello in grado di
+generare eventi è associata un'interfaccia che fornisce i metodi implementati dall'osservatore per ricevere le notifiche.
+Dunque, ognuno dei 4 frame si comporta da osservatore nei confronti dei pannelli usati, fornendo
 le relative interfacce. Allo stesso modo i frame comunicano con le classi
 sottostanti. Il dialogo con la vista avviene dunque in due modi:
 \begin{itemize}
-	\item quando dall'esterno si vuole comunicare con i frame, se ne usano i
+	\item quando dal controller (dalle classi Battlesheep e Lobby) si vuole comunicare con i frame, se ne usano i
 	metodi che questi forniscono;
 	\item quando invece la comunicazione parte dalla grafica, i frame usano i
 	metodi forniti dalle rispettive interfacce che gli osservatori avranno il
@@ -45,8 +44,7 @@ sottostanti. Il dialogo con la vista avviene dunque in due modi:
 	\label{figure:main_frame}
 \end{figure}
 Il frame principale si compone di un unico pannello, il \textit{MainPanel} (Figura \ref{figure:main_frame}).
-Così come detto in fase di progettazione,
-questo frame ha il compito di
+Così come discusso in fase di progettazione, tale frame ha il compito di
 permettere all'utente la scelta della modalità nella quale avviare il programma:
 se come server (lobby) o come client (game).\newline
 Per la comunicazione verso l'esterno, il MainPanel ha un'interfaccia associata
@@ -117,5 +115,5 @@ La classe \textit{Battlesheep} comunica con questo frame tramite i metodi che
 esso mette a disposizione, principalmente per informarlo di come è terminata la
 partita per l'utente, per gli altri giocatori e su come si sono conclusi i vari
 attacchi. Al contrario, il frame comunica con Battlesheep usando l'interfaccia
-\textit{GameFrameObserver} per comunicare la volontà da parte dell'utente di
-abbandonare il gioco o di attaccare un avversario in una daterminata posizione.
+\textit{GameFrameObserver} per comunicare la volontà, da parte dell'utente, di
+abbandonare il gioco o di attaccare un avversario in una determinata posizione.
