@@ -46,7 +46,7 @@ sottostanti. Il dialogo con la vista avviene dunque in due modi:
 Il frame principale si compone di un unico pannello, il \textit{MainPanel} (Figura \ref{figure:main_frame}).
 Così come discusso in fase di progettazione, tale frame ha il compito di
 permettere all'utente la scelta della modalità nella quale avviare il programma:
-se come server (lobby) o come client (game).\newline
+se come server (lobby) o come nodo (game).\newline
 Per la comunicazione verso l'esterno, il MainPanel ha un'interfaccia associata
 che utilizza per notificare il MainFrame alla pressione dei bottoni ``Exit'' e
 ``Start'' il quale, a sua volta, tramite l'observer \textit{MainFrameObserver},
@@ -73,9 +73,9 @@ notifca il \textit{Main}.
 Il \textit{LobbyFrame} si compone di 3 pannelli, brevemente descritti in seguito. Il primo
 pannello permette agli utenti di scegliere il nome della stanza. Ha due bottoni,
 uno per l'uscita dal programma ed uno per l'avanzamento al pannello successivo.
-Il secondo mostra una gif per l'attesa di connessioni da parte dei client ed ha
+Il secondo mostra una gif per l'attesa di connessioni da parte dei peer ed ha
 anch'esso un bottone di uscita. Il terzo ed ultimo pannello, visibile in Figura
-\ref{figure:lobby_frame}, viene mostrato automaticamente non appena un client si
+\ref{figure:lobby_frame}, viene mostrato automaticamente non appena un nodo si
 connette. Ospita due pulsanti: uno per l'uscita dal programma ed uno per l'avvio
 della stanza.\newline
 Quando uno dei bottoni di uscita viene premuto, il frame viene notificato dai pannelli.

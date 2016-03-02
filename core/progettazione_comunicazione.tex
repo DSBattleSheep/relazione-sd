@@ -1,48 +1,48 @@
 \subsection{Comunicazione}
-La comunicazione fra i client e fra client e server avviene nelle tre fasi seguenti:
+La comunicazione fra i nodi e fra essi e i server di registrazione avviene nelle tre fasi seguenti:
 
 \subsubsection{Registrazione}
-Ciascun client ha la necessità di localizzare l'indirizzo della lobby a cui 
+Ciascun peer ha la necessità di localizzare l'indirizzo della lobby a cui 
 registrarsi. Per effettuare tale ricerca si è optato per un approccio forse non 
-molto elegante ma di sicura efficacia: i client scansionano la sottorete (con 
+molto elegante ma di sicura efficacia: i nodi scansionano la sottorete (con 
 maschera 255.255.255.0) alla ricerca di lobby server attivi, che rispondono con 
 il proprio nome identificativo.
-Durante la fase di registrazione i client si connettono al 
+Durante la fase di registrazione i peer si connettono al 
 server fornendo il proprio username e la porta su cui sono in ascolto. Il 
-server risponde con nomi utenti, porte e IP degli altri client in modo da 
+server risponde con nomi utenti, porte e IP degli altri nodi, in modo da 
 consentire l'avvio della comunicazione di tipo p2p. In questa fase non vengono 
-gestiti eventuali crash dei client, in quanto tale gestione avverrà nelle fasi 
+gestiti eventuali crash dei peer, in quanto tale gestione avverrà nelle fasi 
 successive, nelle quali viene implementata la comunicazione distribuita vera e 
 propria.
 \subsubsection{Scelta del turno}
-Durante la scelta del turno ciascun client scorre la lista dei propri 
+Durante la scelta del turno ciascun nodo scorre la lista dei propri 
 avversari e contatta ognuno di essi per ottenere un numero generato in modo 
-pseudocausale. In questo modo i client sono in possesso di valori associati a 
+pseudocausale. In questo modo i peer sono in possesso di valori associati a 
 ciascun avversario, che vengono utilizzati per determinare l'ordine di gioco in 
 modo fair. Nel caso in cui due o più valori siano uguali, la precedenza fra di essi 
 viene determinata a partire dall'ordinamento alfabetico degli username. In 
-seguito alla scelta del turno ciascun client è in possesso di una sequenza 
+seguito alla scelta del turno ciascun nodo è in possesso di una sequenza 
 ordinata di giocatori, che viene usata in seguito per scegliere chi debba 
 cominciare la partita.
 \subsubsection{Gioco}
-Può quindi iniziare la fase di gioco vero e proprio. Tutti i client si 
+Può quindi iniziare la fase di gioco vero e proprio. Tutti i peer si 
 collegano quindi al giocatore che possiede il turno (turn owner). %FIXME
-Quest'ultimo seleziona dunque la propria mossa, la comunica al peer bersaglio, 
+Quest'ultimo seleziona dunque la propria mossa, la comunica al nodo bersaglio, 
 allo scopo di conoscere lo stato della cella selezionata, infine comunica la 
 mossa ed il risultato a tutti gli avversari. Per gestire eventuali crash 
-da parte di utenti diversi dal turn owner, viene restituita ai client anche una 
+da parte di utenti diversi dal turn owner, viene restituita ai nodi anche una 
 lista di player crashati, che viene utilizzata in seguito per modificare in 
 modo appropriato le strutture dati relative ai giocatori. Oltre al caso di crash 
 veri e propri, viene anche gestito il caso in cui la comunicazione di rete a 
 partire da qualche giocatore sia troppo latente, per cui viene impostato un 
 timer oltre il quale non vengono accettate ulteriori connessioni.
 Nel caso in cui sia invece il turn owner a subire un crash, gli altri giocatori 
-vengono allertati immediatamente e il gioco può procedere con il client 
+vengono allertati immediatamente e il gioco può procedere con il nodo 
 successivo.
 Un'ultima possibilità di errore emerge nel caso in cui il turn owner crashi 
-mentre sta restituendo la mossa effettuata ai client. In tal caso, ci 
+mentre sta restituendo la mossa effettuata ai peer. In tal caso, ci 
 si potrebbe trovare in una situazione di inconsistenza dello stato globale del 
-sistema. Alcuni client conoscerebbero la mossa che il precedente turn owner ha 
+sistema. Alcuni nodi conoscerebbero la mossa che il precedente turn owner ha 
 effettuato, altri no. È pertanto necessario gestire tali situazioni per 
 ripristinare la coerenza globale: al turno successivo sarà il nuovo turn owner 
 a confrontare i valori interi contenuti in ciascuna mossa, al fine di 
